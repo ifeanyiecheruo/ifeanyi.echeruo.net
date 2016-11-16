@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dimmitt Career Day 2016</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        .square {
+            width: 240px;
+            height: 135px;
+            margin: 30px;
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+            transform: rotate(270deg);
+        }
+
+        .islit {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dimmit Career Day 2016</h1>
+
+    <table>
+        <tr>
+            <td id="c0"><div class="square"></div></td>
+            <td id="c1"><div class="square"></div></td>
+            <td id="c2"><div class="square"></div></td>
+        </tr>
+        <tr>
+            <td id="c7"><div class="square"></div></td>
+            <td><img class="square" id="center" src="favicon.ico"></td>
+            <td id="c3"><div class="square"></div></td>
+        </tr>
+        <tr>
+            <td id="c6"><div class="square"></div></td>
+            <td id="c5"><div class="square"></div></td>
+            <td id="c4"><div class="square"></div></td>
+        </tr>
+    </table>
+    <script>
+            var x = 0;
+            var y = 0;
+            var t = 0;
+            var rad = 22/7*180;
+            function step2() {
+                t++;
+                x = 30 * Math.sin(t * rad);
+                y = 30 * Math.cos(t * rad);
+            }
+
+            function makeTick() {
+                var index = -1;
+                var centerImage = document.getElementById("center");
+
+                return function() {
+                    var cell;
+                    var div;
+                    index = (index + 1) % 8;
+                    for(var i = 0; i < 8; i++) {
+                        cell = document.getElementById("c" + i);
+                        div = cell.firstElementChild;
+                        div.className = ((i === index) ? " islit " : "") + "square";
+                        centerImage.src = "img" + (index + 1) + ".jpg";
+                    }
+                }
+            }
+
+            setInterval(makeTick(), 1000);
+    </script>
+</body>
+</html>

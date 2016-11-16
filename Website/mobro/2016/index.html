@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta property="og:title" content=">Movember - The peoples choice" />
+        <meta property="og:description" content="Come pick my sexy December look" />
+        <meta property="og:image" content="http://ifeanyi.echeruo.net/mobro/2016/img/fb-preview.png" />
+        <title>Movember - The peoples choice</title>
+        <link rel="stylesheet" href="app.css" type="text/css" />
+        <script src="fetch.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div style="font-family: Impact; font-size: xx-large;">
+            <div id="content" class="centered_column_container">
+                <div>Pick A Look</div>
+
+                <!-- stache options -->
+                <div id="picker-container" class="picker container"></div>
+                <div id="loading-overlay" class="hidden centered_column_container">
+                    Loading...
+                </div>
+                <div id="error-overlay" class="hidden centered_column_container">
+                    <p>The internet is out trimming her 'stache.</p>
+                    <img src="img/error-overlay.gif" width="150" />
+                    <p><a href=".">Try again</a> at a more convenient time</p>
+                </div>
+
+                <div id="vote-container" class="hidden centered_column_container">
+                    <hr style="width: 400px" />
+
+                    <div>
+                        <a href="javascript: void(0)" onclick="onVoteForSelected(this)">Vote</a>
+                    </div>
+
+                    <a class="preview" href="javascript: void(0)" onclick="onVoteForSelected(this)">
+                        <!-- fine-fine bo-bo no pimples! -->
+                        <div class="background item" style="margin: 20px">
+
+                            <!-- stache overlay -->
+                            <div id="preview-item" class="item"></div>
+                        </div>
+                    </a>
+                </div>
+
+                <div id="results-container" class="hidden centered_column_container">
+                    <hr style="width: 400px" />
+
+                    <div>Voting Results</div>
+
+                    <div id="votes-container" class="votes container"></div>
+                </div>
+
+                <hr style="width: 400px" />
+
+                <pre style="font-family: georgia, 'times new roman',times,serif; font-size: initial;">
+                    I'm growing an ungodly mess of facial hair to bring attention to and raise funds for mens health.
+
+                    It's a <a href="https://en.wikipedia.org/wiki/Movember">Movember</a> thing.
+
+                    This is where you <b>[insert name here]</b> my closest and dearest friend since <b>[insert year here]</b> come in.
+                    When it's all said and done I'm going to have to shave this baby off and you get to VOTE on my next new look!
+
+                    Embarrass me?
+                    With a vote involving no electoral college?
+                    Satisfaction guaranteed?
+                    I bet you couldn't trump that!
+
+                    So pick a 'stache above and let your voice be heard, come Dec 1st we find out who won.
+
+                    While you're at it please make a donation <a href="https://mobro.co/ifeanyi">individually</a> or through my <a href="https://mobro.co/hb-mo">HBO fundraising team-mates</a>
+                    Chip in as much as you want or as little as you can, or just leave some words of encouragement on our page.
+
+                </pre>
+
+                <img src="img/fb-preview.png" width="200" />
+            </div>
+        </div>
+    </body>
+</html>
