@@ -1,7 +1,5 @@
-﻿using System.IO;
-using System.Net;
+﻿using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 
 namespace Website.mobro._2016
@@ -14,9 +12,7 @@ namespace Website.mobro._2016
         [Route("vote")]
         public async Task<IHttpActionResult> PostAsync([FromBody]string vote)
         {
-            var connectionString = File.ReadAllText(HttpContext.Current.Server.MapPath("~/App_Data/azurestorage.secret"));
-            var store = new VotesStore(connectionString);
-
+            var store = VotesStore.FromSecret("~/App_Data/azurestorage.secret");
             var added = await store.AddVoteAsync(this.User.Identity.Name, vote);
 
             if (added)

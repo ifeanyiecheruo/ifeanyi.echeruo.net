@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -12,6 +11,18 @@ namespace Website.mobro._2016
 {
     public class VotesStore
     {
+        public static VotesStore FromSecret(string path) {
+            var physicalPath = HttpContext.Current.Server.MapPath(path);
+
+            if (!File.Exists(physicalPath)) {
+                throw new FileNotFoundException("Expecting a file containing an Azure storage connection string", path);
+            }
+
+            var connectionString = File.ReadAllText(physicalPath).Trim();
+
+            return new VotesStore(connectionString);
+        }
+
         public VotesStore(string connectionString)
         {
             storageAccount = CloudStorageAccount.Parse(connectionString);

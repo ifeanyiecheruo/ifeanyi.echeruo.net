@@ -1,5 +1,4 @@
-﻿using System.Dynamic;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
@@ -16,8 +15,7 @@ namespace Website.mobro._2016
         [Route("votes")]
         public async Task<IHttpActionResult> DeleteAsync()
         {
-            var connectionString = File.ReadAllText(HttpContext.Current.Server.MapPath("~/App_Data/azurestorage.secret"));
-            var store = new VotesStore(connectionString);
+            var store = VotesStore.FromSecret("~/App_Data/azurestorage.secret");
 
             await store.ResetAsync();
 
