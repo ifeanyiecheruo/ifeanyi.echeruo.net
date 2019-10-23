@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta property="og:title" content=">Movember - The peoples choice" />
+    <meta property="og:description" content="Come pick my sexy December look" />
+    <meta property="og:image" content="http://ifeanyi.echeruo.net/mobro/2017/img/fb-preview.jpeg" />
+    <title>Movember - The 2017 peoples choice</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="/Common/fetch.js"></script>
+    <script src="/Common/DOM.js"></script>
+    <script src="/Common/stdlib.js"></script>
+    <script src="app.js"></script>
+    <script>
+            var app = new Mobro2017Application();
+
+            var phase = 1;
+
+            function onNextPhase(elem) {
+                var phaseElem = window.document.getElementById("phase" + phase);
+                if (phaseElem) {
+                    DOM.addCssClass(phaseElem, "hidden");
+                }
+
+                phase++;
+
+                var nextPhaseElem = window.document.getElementById("phase" + phase);
+                if (!nextPhaseElem) {
+                    phase = 1;
+                    nextPhaseElem = window.document.getElementById("phase" + phase);
+                }
+
+                if (nextPhaseElem) {
+                    DOM.removeCssClass(nextPhaseElem, "hidden");
+                }
+            }
+
+            function onItemSelected(elem, optionName) {
+                app.selectItem(optionName);
+
+                var end = DOM.findVerticalScrollOffset(document.getElementById("preview-item"));
+                var prevValue = window.scrollY;
+
+                STD.animate(1000, prevValue, end, function (value) {
+                    window.scrollBy(0, value - prevValue);
+                    prevValue = value;
+                });
+            }
+
+            function onPlayGame(elem) {
+                var end = DOM.findVerticalScrollOffset(document.elementFromPoint(10, 10));
+                var prevValue = window.scrollY;
+
+                STD.animate(500, prevValue, end, function (value) {
+                    window.scrollBy(0, value - prevValue);
+                    prevValue = value;
+                }, () => {
+                    app.playWithSelected();
+                });
+            }
+
+            function onVoteForSelected(elem) {
+                app.voteForSelected();
+                window.setTimeout(() => {
+                    onNextPhase(elem);
+                }, 3000);
+            }
+    </script>
+</head>
+<body>
+    <div >
+        <div id="loading-overlay" class="hidden centered column container" style="position:absolute">
+            Loading...
+        </div>
+        <div id="error-overlay" class="hidden centered column container" style="position:absolute">
+            <p>The internet is out trimming her 'stache.</p>
+            <img src="img/error-overlay.gif" width="150" />
+            <p><a href=".">Try again</a> at a more convenient time</p>
+        </div>
+        <div id="content" class="hidden row container" style="font-family: georgia, 'times new roman',times,serif; font-size: initial;">
+            <div id="results-container" style="width: 200px; font-family: Impact; font-size: xx-large">
+                <div>Leaderboard</div>
+                <div id="votes-container" class="votes centered column container"></div>
+                <img src="img/fb-preview.jpeg" style="width: 200px" />
+            </div>
+
+            <div>
+                <div id="phase1" class="centered column container">
+                    <pre>
+                        It's that time again people!!!
+                        Come pick out what I'm going to look like for the next two weeks!!!!
+                        If you haven't caught on yet it's my yearly <a href="https://en.wikipedia.org/wiki/Movember">Movember</a> thing.
+
+                        You vote, and for two weeks I will be forced to adopt whatever silly style wins the most votes.
+                        So what are you waiting for?
+
+                        Pick a look below to put a little splash on my 'stache!
+                        
+                        Or just skip all the tom foolery and give to the Movember foundation.
+                        <a href="https://us.movember.com/donate/payment/member_id/8708557/">Donate</a> through me or <a href="https://us.movember.com/donate/payment/team_id/2248155">Donate</a> through my HBO team
+                    </pre>
+                    <!-- stache options -->
+                    <div class="centered column container">
+                        <pre>Pick a 'stache</pre>
+                        <div id="picker-container" class="picker container"></div>
+                    </div>
+                    <div class="centered column container">
+                        <!-- fine-fine bo-bo no pimples! -->
+                        <div class="background item" style="margin: 20px">
+                            <!-- stache overlay -->
+                            <div id="preview-item" class="item"></div>
+                        </div>
+                        <pre id="play-container">
+                            Sweet, you've picked your look.
+                            All you have to do now is win a game of <a href="javascript: void(0)" onclick="onNextPhase(this); onPlayGame(this)">"catch the stache"</a> to register your vote.
+                        </pre>
+                    </div>
+                </div>
+
+                <div id="phase2" class="hidden centered column container">
+                    <pre>Catch me and I'll make sure your vote gets registered!</pre>
+                    <div style="display: flex; position: relative; top: 200px; width: 1000px; height: 300px">
+                        <div id="game-face" style="position: relative; left: 100px; height: 80px">
+                            <a href="javascript: void(0)" onclick="onVoteForSelected(this)">
+                                <img src="img/error-overlay.gif" style="height: 80px" />
+                            </a>
+                        </div>
+                        <div style="position: absolute; top: -5px; width:1000px; height:600px;
+                                    background-image: url(img/bush.png);
+                                    background-repeat: repeat;">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phase3" class="hidden centered column container">
+                    <pre>Congratulations on voting for</pre>
+                    <div class="background item" style="margin: 20px">
+                        <!-- stache overlay -->
+                        <div id="preview-item-2" class="item"></div>
+                    </div>
+                    <pre>
+                        Check out the leader board on the left to see where your choice now ranks!
+
+                        Not happy with your choice? Don't tell the Donald but you could
+                        <a href="javascript: void(0)" onclick="onNextPhase(this)">vote again</a>!!!
+
+                        Or toss a few pennies at the Movember foundation 
+                        <a href="https://us.movember.com/donate/payment/member_id/8708557/">Donate</a> through me or <a href="https://us.movember.com/donate/payment/team_id/2248155">Donate</a> through my HBO team
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        app.refresh();
+    </script>
+</body>
+</html>

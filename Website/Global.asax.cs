@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Data.Entity;
+using System.Web.Http;
 
 namespace Website
 {

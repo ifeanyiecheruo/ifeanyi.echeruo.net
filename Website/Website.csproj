@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -22,6 +22,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Common\DOM.ts" />
+    <TypeScriptCompile Include="Common\stdlib.ts" />
+    <TypeScriptCompile Include="Common\stdlib.d.ts" />
+    <TypeScriptCompile Include="Common\fetch.d.ts" />
     <Content Include="dimmitt\2016\img1.jpg" />
     <Content Include="dimmitt\2016\img2.jpg" />
     <Content Include="dimmitt\2016\img3.jpg" />
@@ -35,7 +39,7 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="mobro\2016\app.css" />
-    <Content Include="mobro\2016\fetch.js" />
+    <Content Include="Common\fetch.js" />
     <Content Include="mobro\2016\img\barry-stache.png" />
     <Content Include="mobro\2016\img\biker-stache.png" />
     <Content Include="mobro\2016\img\error-overlay.gif" />
@@ -48,16 +52,31 @@
     <Content Include="mobro\2016\img\stark-stache.png" />
     <Content Include="mobro\2016\img\tai-chi-master-stache.png" />
     <Content Include="mobro\2016\index.html" />
+    <Content Include="mobro\2017\app.css" />
+    <Content Include="mobro\2017\img\barry-stache.png" />
+    <Content Include="mobro\2017\img\biker-stache.png" />
+    <Content Include="mobro\2017\img\bush.png" />
+    <Content Include="mobro\2017\img\error-overlay.gif" />
+    <Content Include="mobro\2017\img\fine-fine-boy.png" />
+    <Content Include="mobro\2017\img\groucho-stache.png" />
+    <Content Include="mobro\2017\img\logan-stache.png" />
+    <Content Include="mobro\2017\img\mutton-chops-stache.png" />
+    <Content Include="mobro\2017\img\price-stache.png" />
+    <Content Include="mobro\2017\img\stark-stache.png" />
+    <Content Include="mobro\2017\img\tai-chi-master-stache.png" />
+    <Content Include="mobro\2017\index.html" />
     <Content Include="mobro\index.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Common\Promise.d.ts" />
     <TypeScriptCompile Include="mobro\2016\app.ts" />
+    <TypeScriptCompile Include="mobro\2017\app.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="App_Data\azurestorage.secret" />
     <None Include="ifeanyiecheruo.pubxml" />
+    <Content Include="mobro\2017\img\fb-preview.jpeg" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -70,12 +89,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="mobro\2016\VotesController.cs" />
-    <Compile Include="mobro\2016\VoteController.cs" />
-    <Compile Include="mobro\2016\CookieAuthenticationAttribute.cs" />
+    <Compile Include="mobro\2016\Mobro2016VotesController.cs" />
+    <Compile Include="mobro\2016\Mobro2016VoteController.cs" />
+    <Compile Include="Common\CookieAuthenticationAttribute.cs" />
     <Compile Include="mobro\2016\VotesStore.cs" />
+    <Compile Include="mobro\2016\WebsiteDataContext.cs" />
+    <Compile Include="Common\WebsiteDataContext.cs" />
+    <Compile Include="mobro\2017\Mobro2017VoteController.cs" />
+    <Compile Include="mobro\2017\Mobro2017VotesController.cs" />
+    <Compile Include="mobro\2017\VotesStore.cs" />
+    <Compile Include="mobro\2017\WebsiteDataContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
       <Private>True</Private>
@@ -101,6 +134,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -108,6 +142,8 @@
       <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
@@ -121,8 +157,11 @@
       <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>

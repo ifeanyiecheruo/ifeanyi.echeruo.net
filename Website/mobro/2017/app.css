@@ -1,0 +1,98 @@
+﻿.hidden {
+    display: none;
+}
+
+.centered {
+    align-items: center;
+}
+
+.container {
+    margin: 10px;
+    padding: 5px;
+}
+
+.column.container {
+    display: flex;
+    flex-direction: column;
+}
+.centered.column.container {
+    align-items: center;
+}
+.hidden.column.container {
+    display: none;
+}
+
+.row.container {
+    display: flex;
+    flex-direction: row;
+}
+.centered.row.container {
+    align-items: center;
+}
+.hidden.row.container {
+    display: none;
+}
+
+
+.background {
+    background-image: url(img/fine-fine-boy.png);
+}
+
+.container.picker {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.hidden .container.picker {
+    display: none;
+}
+
+.item {
+    width: 100px;
+    height: 150px;
+    margin: 2px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.preview .item {
+    width: 180px;
+    height: 270px;
+}
+
+.container.picker .item {
+    height: 80px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightblue;
+    border-radius: 10px;
+
+    background-position: bottom;
+}
+
+.container.picker .item.selected {
+    width: 120px;
+
+    border-width: 2px;
+    border-color: steelblue;
+}
+
+.votes.container {
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightblue;
+    border-radius: 10px;
+}
+
+.votes .background.item {
+    margin: 2px;
+}
+
+.votes .item {
+    margin: 0px;
+    width: 100px;
+    height: 100px;
+}
